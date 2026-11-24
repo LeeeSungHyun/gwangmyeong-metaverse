@@ -14,3 +14,8 @@
 
 .avatar-name{padding:2px 7px;border-radius:7px;background:rgba(255,250,242,.88);color:#514337;font:600 11px/1.35 'Noto Sans KR',sans-serif;white-space:nowrap;text-shadow:0 1px 1px rgba(255,255,255,.7);pointer-events:none;}
 .avatar-greeting{padding:3px 9px;border-radius:999px;background:rgba(255,248,230,.96);border:1px solid #e8d4ad;color:#a47738;font:600 12px/1.35 'Noto Sans KR',sans-serif;white-space:nowrap;box-shadow:0 2px 8px rgba(55,38,24,.12);pointer-events:none;}
+
+/* Prayer cushion controls and responsive action bar */
+.actions{max-width:min(620px,calc(100% - 150px));overflow-x:auto;scrollbar-width:thin;white-space:nowrap;}
+.actions button{flex:0 0 auto;min-width:52px;}
+@media(max-width:650px){.actions{max-width:calc(100% - 150px);right:10px;bottom:70px;left:auto;transform:none;gap:2px;padding:5px}.actions button{min-width:45px;padding:5px 7px;font-size:18px}.actions small{font-size:8px}}
