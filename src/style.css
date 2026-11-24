@@ -19,3 +19,11 @@
 .actions{max-width:min(620px,calc(100% - 150px));overflow-x:auto;scrollbar-width:thin;white-space:nowrap;}
 .actions button{flex:0 0 auto;min-width:52px;}
 @media(max-width:650px){.actions{max-width:calc(100% - 150px);right:10px;bottom:70px;left:auto;transform:none;gap:2px;padding:5px}.actions button{min-width:45px;padding:5px 7px;font-size:18px}.actions small{font-size:8px}}
+
+
+/* Ambient prayer music controls */
+.music-control{position:absolute;top:18px;right:18px;z-index:4;display:flex;align-items:center;gap:11px;padding:7px 11px;border:1px solid #fff;border-radius:14px;background:#fffaf0ed;box-shadow:0 4px 16px #543a2518}
+.music-toggle{display:flex;align-items:center;gap:7px;border:0;background:transparent;color:#80664d;font:600 11px 'Noto Sans KR',sans-serif;white-space:nowrap;cursor:pointer}
+.music-control label{display:flex;align-items:center}
+.music-control input[type=range]{width:88px;height:4px;accent-color:#956e4d;cursor:pointer}
+@media(max-width:650px){.music-control{top:12px;right:10px;gap:6px;padding:6px 8px}.music-toggle{font-size:9px;gap:4px}.music-toggle svg{width:14px;height:14px}.music-control input[type=range]{width:58px}}
