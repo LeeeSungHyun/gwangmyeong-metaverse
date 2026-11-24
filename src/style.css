@@ -9,5 +9,8 @@
 .drawer select{width:100%;border:1px solid #e4d8c9;border-radius:10px;padding:12px;font:13px 'Noto Sans KR',sans-serif;background:white;color:#4e4034}
 
 /* Avatar chat speech bubble */
-.avatar-bubble{position:relative;max-width:220px;min-width:44px;padding:9px 13px;border:1px solid #e8d9c5;border-radius:15px;background:rgba(255,250,242,.97);color:#4e4034;font:600 13px/1.45 'Noto Sans KR',sans-serif;text-align:center;white-space:normal;overflow-wrap:anywhere;box-shadow:0 5px 18px rgba(55,38,24,.2);pointer-events:none;}
+.avatar-bubble{position:relative;box-sizing:border-box;width:max-content;max-width:190px;min-width:48px;padding:7px 11px;border:1px solid #e8d9c5;border-radius:14px;background:rgba(255,250,242,.98);color:#4e4034;font:500 12px/1.5 'Noto Sans KR',sans-serif;text-align:center;white-space:pre-wrap;overflow-wrap:anywhere;word-break:keep-all;box-shadow:0 4px 14px rgba(55,38,24,.18);pointer-events:none;}
 .avatar-bubble:after{content:'';position:absolute;left:50%;bottom:-7px;width:12px;height:12px;transform:translateX(-50%) rotate(45deg);background:#fffaf2;border-right:1px solid #e8d9c5;border-bottom:1px solid #e8d9c5;}
+
+.avatar-name{padding:2px 7px;border-radius:7px;background:rgba(255,250,242,.88);color:#514337;font:600 11px/1.35 'Noto Sans KR',sans-serif;white-space:nowrap;text-shadow:0 1px 1px rgba(255,255,255,.7);pointer-events:none;}
+.avatar-greeting{padding:3px 9px;border-radius:999px;background:rgba(255,248,230,.96);border:1px solid #e8d4ad;color:#a47738;font:600 12px/1.35 'Noto Sans KR',sans-serif;white-space:nowrap;box-shadow:0 2px 8px rgba(55,38,24,.12);pointer-events:none;}
