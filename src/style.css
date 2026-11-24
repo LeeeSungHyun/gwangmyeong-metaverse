@@ -7,3 +7,7 @@
 @media(max-width:650px){.actions{left:auto;right:12px;transform:none;bottom:16px}.chat-toggle{bottom:16px;right:12px}.actions{right:12px;bottom:70px}.tip{left:50%;top:65px}}
 
 .drawer select{width:100%;border:1px solid #e4d8c9;border-radius:10px;padding:12px;font:13px 'Noto Sans KR',sans-serif;background:white;color:#4e4034}
+
+/* Avatar chat speech bubble */
+.avatar-bubble{position:relative;max-width:220px;min-width:44px;padding:9px 13px;border:1px solid #e8d9c5;border-radius:15px;background:rgba(255,250,242,.97);color:#4e4034;font:600 13px/1.45 'Noto Sans KR',sans-serif;text-align:center;white-space:normal;overflow-wrap:anywhere;box-shadow:0 5px 18px rgba(55,38,24,.2);pointer-events:none;}
+.avatar-bubble:after{content:'';position:absolute;left:50%;bottom:-7px;width:12px;height:12px;transform:translateX(-50%) rotate(45deg);background:#fffaf2;border-right:1px solid #e8d9c5;border-bottom:1px solid #e8d9c5;}
