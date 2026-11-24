@@ -3,7 +3,7 @@
 /* build trigger: sanctuary JSX correction */
 
 /* Mobile movement joystick */
-.joystick{display:none;position:absolute;left:18px;bottom:18px;width:126px;height:126px;border-radius:50%;background:#fffaf0a8;border:2px solid #ffffffd9;box-shadow:0 4px 18px #543a2526;z-index:3;touch-action:none;user-select:none;-webkit-user-select:none;pointer-events:auto}.joystick-knob{position:absolute;left:50%;top:50%;width:48px;height:48px;margin:-24px;border-radius:50%;background:#956e4d;border:3px solid #fffaf0;box-shadow:0 2px 8px #34251d44;pointer-events:none}
-@media(max-width:650px){.joystick{display:block}.actions{left:auto;right:12px;transform:none;bottom:16px}.chat-toggle{bottom:16px;right:12px}.actions{right:12px;bottom:70px}.tip{left:50%;top:65px}}
+.joystick{display:block;position:absolute;left:18px;bottom:18px;width:126px;height:126px;border-radius:50%;background:#fffaf0a8;border:2px solid #ffffffd9;box-shadow:0 4px 18px #543a2526;z-index:3;touch-action:none;user-select:none;-webkit-user-select:none;pointer-events:auto}.joystick-knob{position:absolute;left:50%;top:50%;width:48px;height:48px;margin:-24px;border-radius:50%;background:#956e4d;border:3px solid #fffaf0;box-shadow:0 2px 8px #34251d44;pointer-events:none}
+@media(max-width:650px){.actions{left:auto;right:12px;transform:none;bottom:16px}.chat-toggle{bottom:16px;right:12px}.actions{right:12px;bottom:70px}.tip{left:50%;top:65px}}
 
 .drawer select{width:100%;border:1px solid #e4d8c9;border-radius:10px;padding:12px;font:13px 'Noto Sans KR',sans-serif;background:white;color:#4e4034}
