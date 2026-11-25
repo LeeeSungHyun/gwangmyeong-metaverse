@@ -36,7 +36,7 @@ function BandSetup(){const white='#eee9df',black='#25282b',metal='#777b7e',red='
 <Block p={[-.045,1.43,1.02]} s={[.07,2.9,.07]} c="#d2b66e"/>
 <Block p={[-.045,1.43,.04]} s={[.07,2.9,.07]} c="#d2b66e"/>
 </group>
-{/* Realistic acoustic drum kit: shells, heads, hoops, lugs, stands and pedals */
+{/* Realistic acoustic drum kit: shells, heads, hoops, lugs, stands and pedals */}
 <group rotation={[0,-.32,0]}>
 {/* Bass drum: lacquered shell, front resonant head, hoop and tension hardware */}
 <mesh position={[0,.88,.88]} rotation={[Math.PI/2,0,0]} castShadow><cylinderGeometry args={[.72,.72,.66,64]}/><meshStandardMaterial color="#751c2c" metalness={.42} roughness={.24}/></mesh>
