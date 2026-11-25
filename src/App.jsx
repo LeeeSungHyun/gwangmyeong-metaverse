@@ -16,7 +16,7 @@ function BandSetup(){const white='#eee9df',black='#25282b',metal='#777b7e',red='
 {/* Guitar amplifier */}
 <group position={[17.5,.52+.34,-27.1]}><Block p={[0,0,0]} s={[1.02,1.02,.78]} c="#27292c"/><Block p={[0,0,.4]} s={[.9,.84,.025]} c="#514a43"/><mesh position={[0,-.05,.425]}><circleGeometry args={[.31,32]}/><meshStandardMaterial color="#17191b"/></mesh><mesh position={[0,-.05,.445]}><circleGeometry args={[.22,32]}/><meshStandardMaterial color="#a09a8d"/></mesh><Block p={[0,.38,.43]} s={[.48,.07,.035]} c="#c2a66f"/></group>
 {/* Rectangular acoustic drum booth with a solid lid and a side entrance */}
-<group position={[22.8,.34,-28.55]} rotation={[0,-.32,0]}>
+<group position={[22.8,.34,-28.55]}>
 {/* Clear enclosure walls */}
 <mesh position={[0,1.62,-2.78]}><boxGeometry args={[5.65,3.18,.075]}/><meshStandardMaterial color="#a9c9d2" transparent opacity={.2} roughness={.14} metalness={.18}/></mesh>
 <mesh position={[-2.82,1.62,0]}><boxGeometry args={[.075,3.18,5.6]}/><meshStandardMaterial color="#a9c9d2" transparent opacity={.2} roughness={.14} metalness={.18}/></mesh>
