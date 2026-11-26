@@ -100,3 +100,15 @@ nav button:hover{color:#62452f}
 /* In-world prayer sharing board */
 .prayer-board-button{border:1px solid #b99a74;border-radius:7px;padding:4px 8px;background:rgba(255,250,241,.97);color:#684b32;font:600 10px 'Noto Sans KR',sans-serif;white-space:nowrap;box-shadow:0 2px 8px rgba(45,31,20,.18);cursor:pointer;}
 .prayer-board-button:hover{background:#fff;color:#4d3523;}
+
+/* Tiny, unobtrusive prayer-board action */
+.prayer-board-button{
+  display:inline-flex!important;align-items:center!important;justify-content:center!important;
+  gap:3px!important;width:auto!important;min-width:0!important;height:22px!important;
+  padding:2px 6px!important;border:1px solid rgba(185,154,116,.72)!important;
+  border-radius:999px!important;background:rgba(255,250,241,.94)!important;
+  color:#684b32!important;font:600 8px/1 'Noto Sans KR',sans-serif!important;
+  letter-spacing:-.25px!important;white-space:nowrap!important;
+  box-shadow:0 1px 4px rgba(45,31,20,.12)!important;cursor:pointer!important;
+}
+.prayer-board-button:hover{background:#fff!important}
