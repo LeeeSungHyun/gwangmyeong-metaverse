@@ -43,3 +43,4 @@ nav button{transition:background .18s ease,color .18s ease}
 nav button:hover{color:#62452f}
 .drawer{background:linear-gradient(160deg,#fffaf4 0%,#f8f0e5 100%)}
 .drawer h2{letter-spacing:-.5px}
+.world-loading{position:absolute;inset:0;z-index:8;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;background:radial-gradient(ellipse at 50% 38%,#f4ede2 0%,#d8cbb9 100%);color:#72563d;text-align:center;pointer-events:none}.world-loading-mark{display:grid;place-items:center;width:48px;height:48px;border:1px solid rgba(130,99,67,.28);border-radius:50%;font-size:25px;color:#a17b54;animation:world-pulse 1.3s ease-in-out infinite}.world-loading b{font-size:14px;font-weight:700}.world-loading small{font-size:11px;color:#8f7b66}@keyframes world-pulse{0%,100%{transform:scale(.92);opacity:.65}50%{transform:scale(1.08);opacity:1}}
