@@ -44,9 +44,9 @@ function Person({p,positionRef}){
    {[-1,1].map(side=><mesh key={side} position={[side*.372,1.075,-.005]} scale={[.068,.085,.065]}><sphereGeometry args={[1,20,16]}/><meshStandardMaterial color={skin}/></mesh>)}
    {/* Warm eyes: smaller irises and restrained highlights */}
    {[-.132,.132].map(x=><React.Fragment key={x}>
-    <mesh position={[x,1.115,.326]} scale={[.046,.061,.022]}><sphereGeometry args={[1,28,20]}/><meshStandardMaterial color="#fffaf5" roughness={.4}/></mesh>
-    <mesh position={[x+.003,1.112,.345]} scale={[.032,.047,.018]}><sphereGeometry args={[1,26,18]}/><meshStandardMaterial color={female?'#594139':'#493832'} roughness={.28}/></mesh>
-    <mesh position={[x-.009,1.132,.362]} scale={[.010,.013,.007]}><sphereGeometry args={[1,14,12]}/><meshBasicMaterial color="#ffffff"/></mesh>
+    <mesh position={[x,1.115,.326]} scale={[.042,.056,.021]}><sphereGeometry args={[1,28,20]}/><meshStandardMaterial color="#fffaf5" roughness={.4}/></mesh>
+    <mesh position={[x+.003,1.112,.343]} scale={[.029,.043,.017]}><sphereGeometry args={[1,26,18]}/><meshStandardMaterial color={female?'#594139':'#493832'} roughness={.28}/></mesh>
+    <mesh position={[x-.008,1.129,.359]} scale={[.009,.011,.006]}><sphereGeometry args={[1,14,12]}/><meshBasicMaterial color="#ffffff"/></mesh>
    </React.Fragment>)}
    {/* Fine eyebrows, subtle warmth and a small curved smile */}
    {[-1,1].map(side=><React.Fragment key={side}>
