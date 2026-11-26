@@ -46,3 +46,8 @@ nav button:hover{color:#62452f}
 .world-loading{position:absolute;inset:0;z-index:8;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;background:radial-gradient(ellipse at 50% 38%,#f4ede2 0%,#d8cbb9 100%);color:#72563d;text-align:center;pointer-events:none}.world-loading-mark{display:grid;place-items:center;width:48px;height:48px;border:1px solid rgba(130,99,67,.28);border-radius:50%;font-size:25px;color:#a17b54;animation:world-pulse 1.3s ease-in-out infinite}.world-loading b{font-size:14px;font-weight:700}.world-loading small{font-size:11px;color:#8f7b66}@keyframes world-pulse{0%,100%{transform:scale(.92);opacity:.65}50%{transform:scale(1.08);opacity:1}}
 
 .joystick{display:none}@media(max-width:650px){.joystick{display:block}}
+
+/* Compact avatar labels: keep the sanctuary view unobstructed */
+.avatar-name{padding:1px 5px;border-radius:6px;background:rgba(255,250,242,.78);color:#514337;font:600 9px/1.25 'Noto Sans KR',sans-serif;letter-spacing:-.2px;opacity:.9;box-shadow:0 1px 4px rgba(55,38,24,.08)}
+.avatar-greeting{padding:2px 7px;font-size:10px;box-shadow:0 1px 5px rgba(55,38,24,.1)}
+.avatar-bubble{max-width:160px;padding:5px 8px;font-size:10px;line-height:1.4;border-radius:11px;box-shadow:0 2px 8px rgba(55,38,24,.12)}
