@@ -33,46 +33,27 @@ function Person({p,positionRef}){
    {/* A slightly taller, softer silhouette: less oversized head, fuller hoodie */}
    <mesh position={[0,.55,0]} scale={[.305,.385,.255]} castShadow><sphereGeometry args={[1,32,28]}/><meshStandardMaterial color={shirt} roughness={.9}/></mesh>
    <mesh position={[0,.315,.018]} scale={[.235,.105,.195]} castShadow><sphereGeometry args={[1,24,18]}/><meshStandardMaterial color={shirt} roughness={.9}/></mesh>
-   {/* New kawaii face: softer cheeks, petite nose and a warm open smile */}
-   <mesh position={[0,1.105,0]} scale={[.385,.405,.355]} castShadow><sphereGeometry args={[1,48,40]}/><meshStandardMaterial color="#f8dfd2" roughness={.92}/></mesh>
-   {/* Soft cheek volume */}
-   {[-1,1].map(side=><mesh key={side} position={[side*.205,1.005,.286]} scale={[.105,.085,.075]}><sphereGeometry args={[1,28,20]}/><meshStandardMaterial color="#f5c8bd" roughness={.95}/></mesh>)}
-   {/* Tiny rounded ears */}
-   {[-1,1].map(side=><mesh key={side} position={[side*.372,1.075,-.005]} scale={[.068,.085,.065]}><sphereGeometry args={[1,20,16]}/><meshStandardMaterial color="#f4d5c8"/></mesh>)}
-   {/* Petite smiling eyes with a soft dark lash line */}
+   {/* Clean rebuilt face: one face layer, one pair of eyes, one mouth */}
+   <mesh position={[0,1.105,0]} scale={[.385,.405,.355]} castShadow><sphereGeometry args={[1,48,40]}/><meshStandardMaterial color="#f8dfd2" roughness={.94}/></mesh>
+   {/* Ears */}
+   {[-1,1].map(side=><mesh key={side} position={[side*.374,1.075,-.005]} scale={[.065,.082,.06]}><sphereGeometry args={[1,24,18]}/><meshStandardMaterial color="#f4d5c8" roughness={.95}/></mesh>)}
+   {/* Hair cap and two soft fringe locks */}
+   <mesh position={[0,1.255,-.075]} scale={[.394,.29,.344]} castShadow><sphereGeometry args={[1,40,32]}/><meshStandardMaterial color={hair} roughness={.96}/></mesh>
+   <mesh position={[-.13,1.345,.225]} rotation={[0,0,-.22]} scale={[.235,.105,.145]} castShadow><sphereGeometry args={[1,32,24]}/><meshStandardMaterial color={hair} roughness={.96}/></mesh>
+   <mesh position={[.105,1.35,.24]} rotation={[0,0,.16]} scale={[.205,.095,.135]} castShadow><sphereGeometry args={[1,32,24]}/><meshStandardMaterial color={hair} roughness={.96}/></mesh>
+   {/* Side locks frame the face without covering the eyes */}
+   {[-1,1].map(side=><mesh key={side} position={[side*.337,1.045,.045]} rotation={[0,0,side*-.08]} scale={[.075,.245,.105]} castShadow><capsuleGeometry args={[1,.22,8,16]}/><meshStandardMaterial color={hair} roughness={.96}/></mesh>)}
+   {female&&[-1,1].map(side=><mesh key={side} position={[side*.365,.91,-.07]} scale={[.082,.255,.12]} castShadow><capsuleGeometry args={[1,.22,8,16]}/><meshStandardMaterial color={hair} roughness={.96}/></mesh>)}
+   {/* Small, evenly spaced eyes with a single subtle highlight */}
    {[-1,1].map(side=><React.Fragment key={side}>
-    <mesh position={[side*.132,1.125,.329]} rotation={[0,0,side*-.08]} scale={[.052,.033,.018]}><sphereGeometry args={[1,28,20]}/><meshStandardMaterial color="#4a302b" roughness={.45}/></mesh>
-    <mesh position={[side*.132,1.113,.344]} rotation={[0,0,side*-.08]} scale={[.034,.013,.009]}><sphereGeometry args={[1,20,14]}/><meshBasicMaterial color="#fffaf4"/></mesh>
-    <mesh position={[side*.132,1.188,.322]} rotation={[0,0,side*-.08]}><capsuleGeometry args={[.008,.045,4,8]}/><meshStandardMaterial color="#765148"/></mesh>
+    <mesh position={[side*.135,1.115,.329]} scale={[.039,.052,.018]}><sphereGeometry args={[1,28,20]}/><meshStandardMaterial color="#49332e" roughness={.42}/></mesh>
+    <mesh position={[side*.135-.009,1.134,.344]} scale={[.009,.011,.006]}><sphereGeometry args={[1,16,12]}/><meshBasicMaterial color="#fffaf5"/></mesh>
+    <mesh position={[side*.135,1.205,.326]} rotation={[0,0,side*-.06]}><capsuleGeometry args={[.006,.042,4,8]}/><meshStandardMaterial color={hair}/></mesh>
+    <mesh position={[side*.235,1.015,.302]} scale={[.052,.022,.008]}><sphereGeometry args={[1,20,14]}/><meshBasicMaterial color="#eea6a0" transparent opacity={.38}/></mesh>
    </React.Fragment>)}
-   {/* Small nose and open, friendly smile */}
-   <mesh position={[0,1.055,.353]} scale={[.018,.012,.01]}><sphereGeometry args={[1,18,14]}/><meshStandardMaterial color="#e7b6a6" roughness={.9}/></mesh>
-   <mesh position={[0,1.005,.354]} scale={[.067,.045,.018]}><sphereGeometry args={[1,28,20]}/><meshStandardMaterial color="#a94f55" roughness={.8}/></mesh>
-   <mesh position={[0,1.024,.369]} scale={[.042,.012,.008]}><sphereGeometry args={[1,20,14]}/><meshBasicMaterial color="#fff5eb"/></mesh>
-   {/* Warm blush */}
-   {[-1,1].map(side=><mesh key={side} position={[side*.235,1.025,.296]} scale={[.068,.032,.012]}><sphereGeometry args={[1,24,16]}/><meshBasicMaterial color="#ee9f9c" transparent opacity={.42}/></mesh>)}
-   {/* Layered hair cap, tapered fringe and soft side locks */}
-   <mesh position={[0,1.245,-.075]} scale={[.392,.292,.342]} castShadow><sphereGeometry args={[1,40,32]}/><meshStandardMaterial color={hair} roughness={.96}/></mesh>
-   <mesh position={[-.105,1.345,.235]} rotation={[0,0,-.28]} scale={[.245,.095,.145]} castShadow><sphereGeometry args={[1,28,20]}/><meshStandardMaterial color={hair} roughness={.96}/></mesh>
-   <mesh position={[.105,1.365,.252]} rotation={[0,0,.16]} scale={[.205,.082,.13]} castShadow><sphereGeometry args={[1,28,20]}/><meshStandardMaterial color={hair} roughness={.96}/></mesh>
-   <mesh position={[-.315,1.115,.055]} rotation={[0,0,-.12]} scale={[.095,.245,.115]} castShadow><capsuleGeometry args={[1,.22,8,16]}/><meshStandardMaterial color={hair} roughness={.96}/></mesh>
-   <mesh position={[.315,1.115,.055]} rotation={[0,0,.12]} scale={[.095,.245,.115]} castShadow><capsuleGeometry args={[1,.22,8,16]}/><meshStandardMaterial color={hair} roughness={.96}/></mesh>
-   {female&&<><mesh position={[-.365,1.005,-.055]} scale={[.09,.30,.13]} castShadow><capsuleGeometry args={[1,.22,8,16]}/><meshStandardMaterial color={hair}/></mesh><mesh position={[.365,1.005,-.055]} scale={[.09,.30,.13]} castShadow><capsuleGeometry args={[1,.22,8,16]}/><meshStandardMaterial color={hair}/></mesh></>}
-   {/* Small ears sit naturally at the sides */}
-   {[-1,1].map(side=><mesh key={side} position={[side*.372,1.075,-.005]} scale={[.068,.085,.065]}><sphereGeometry args={[1,20,16]}/><meshStandardMaterial color={skin}/></mesh>)}
-   {/* Warm eyes: smaller irises and restrained highlights */}
-   {[-.132,.132].map(x=><React.Fragment key={x}>
-    <mesh position={[x,1.115,.326]} scale={[.042,.056,.021]}><sphereGeometry args={[1,28,20]}/><meshStandardMaterial color="#fffaf5" roughness={.4}/></mesh>
-    <mesh position={[x+.003,1.112,.343]} scale={[.029,.043,.017]}><sphereGeometry args={[1,26,18]}/><meshStandardMaterial color={female?'#594139':'#493832'} roughness={.28}/></mesh>
-    <mesh position={[x-.008,1.129,.359]} scale={[.009,.011,.006]}><sphereGeometry args={[1,14,12]}/><meshBasicMaterial color="#ffffff"/></mesh>
-   </React.Fragment>)}
-   {/* Fine eyebrows, subtle warmth and a small curved smile */}
-   {[-1,1].map(side=><React.Fragment key={side}>
-    <mesh position={[side*.132,1.222,.329]} rotation={[0,0,side*-.08]}><capsuleGeometry args={[.009,.052,4,8]}/><meshStandardMaterial color={hair} roughness={.9}/></mesh>
-    <mesh position={[side*.235,1.025,.296]} scale={[.055,.023,.009]}><sphereGeometry args={[1,20,14]}/><meshBasicMaterial color="#e9a6a0" transparent opacity={.32}/></mesh>
-   </React.Fragment>)}
-   <mesh position={[0,1.055,.354]} scale={[.014,.012,.009]}><sphereGeometry args={[1,16,12]}/><meshStandardMaterial color="#d5a18e" roughness={.9}/></mesh>
-   <mesh position={[0,1.018,.354]}><tubeGeometry args={[new THREE.CatmullRomCurve3([new THREE.Vector3(-.035,0,0),new THREE.Vector3(-.018,-.012,.002),new THREE.Vector3(0,-.015,.003),new THREE.Vector3(.018,-.012,.002),new THREE.Vector3(.035,0,0)]),12,.006,6,false]}/><meshStandardMaterial color="#a96f68" roughness={.8}/></mesh>
+   {/* Tiny nose and simple curved smile */}
+   <mesh position={[0,1.055,.354]} scale={[.012,.01,.008]}><sphereGeometry args={[1,16,12]}/><meshStandardMaterial color="#d9a897" roughness={.95}/></mesh>
+   <mesh position={[0,1.012,.352]}><tubeGeometry args={[new THREE.CatmullRomCurve3([new THREE.Vector3(-.034,0,0),new THREE.Vector3(-.018,-.012,0),new THREE.Vector3(0,-.015,0),new THREE.Vector3(.018,-.012,0),new THREE.Vector3(.034,0,0)]),12,.005,.9,false]}/><meshStandardMaterial color="#a96f68" roughness={.9}/></mesh>
    {/* Hood collar, drawstrings and a softly shaped front pocket */}
    <mesh position={[0,.805,-.105]} scale={[.205,.19,.12]} castShadow><torusGeometry args={[.72,.18,10,28]}/><meshStandardMaterial color={shirt} roughness={.92}/></mesh>
    <mesh position={[0,.79,.205]} scale={[.15,.055,.045]}><sphereGeometry args={[1,24,18]}/><meshStandardMaterial color="#f1e6da" roughness={.95}/></mesh>
