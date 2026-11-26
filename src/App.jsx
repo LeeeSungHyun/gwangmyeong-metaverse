@@ -33,8 +33,24 @@ function Person({p,positionRef}){
    {/* A slightly taller, softer silhouette: less oversized head, fuller hoodie */}
    <mesh position={[0,.55,0]} scale={[.305,.385,.255]} castShadow><sphereGeometry args={[1,32,28]}/><meshStandardMaterial color={shirt} roughness={.9}/></mesh>
    <mesh position={[0,.315,.018]} scale={[.235,.105,.195]} castShadow><sphereGeometry args={[1,24,18]}/><meshStandardMaterial color={shirt} roughness={.9}/></mesh>
-   {/* Rounded face with calmer, more natural proportions */}
-   <mesh position={[0,1.105,0]} scale={[.385,.405,.355]} castShadow><sphereGeometry args={[1,40,32]}/><meshStandardMaterial color={skin} roughness={.94}/></mesh>
+   {/* New kawaii face: softer cheeks, petite nose and a warm open smile */}
+   <mesh position={[0,1.105,0]} scale={[.385,.405,.355]} castShadow><sphereGeometry args={[1,48,40]}/><meshStandardMaterial color="#f8dfd2" roughness={.92}/></mesh>
+   {/* Soft cheek volume */}
+   {[-1,1].map(side=><mesh key={side} position={[side*.205,1.005,.286]} scale={[.105,.085,.075]}><sphereGeometry args={[1,28,20]}/><meshStandardMaterial color="#f5c8bd" roughness={.95}/></mesh>)}
+   {/* Tiny rounded ears */}
+   {[-1,1].map(side=><mesh key={side} position={[side*.372,1.075,-.005]} scale={[.068,.085,.065]}><sphereGeometry args={[1,20,16]}/><meshStandardMaterial color="#f4d5c8"/></mesh>)}
+   {/* Petite smiling eyes with a soft dark lash line */}
+   {[-1,1].map(side=><React.Fragment key={side}>
+    <mesh position={[side*.132,1.125,.329]} rotation={[0,0,side*-.08]} scale={[.052,.033,.018]}><sphereGeometry args={[1,28,20]}/><meshStandardMaterial color="#4a302b" roughness={.45}/></mesh>
+    <mesh position={[side*.132,1.113,.344]} rotation={[0,0,side*-.08]} scale={[.034,.013,.009]}><sphereGeometry args={[1,20,14]}/><meshBasicMaterial color="#fffaf4"/></mesh>
+    <mesh position={[side*.132,1.188,.322]} rotation={[0,0,side*-.08]}><capsuleGeometry args={[.008,.045,4,8]}/><meshStandardMaterial color="#765148"/></mesh>
+   </React.Fragment>)}
+   {/* Small nose and open, friendly smile */}
+   <mesh position={[0,1.055,.353]} scale={[.018,.012,.01]}><sphereGeometry args={[1,18,14]}/><meshStandardMaterial color="#e7b6a6" roughness={.9}/></mesh>
+   <mesh position={[0,1.005,.354]} scale={[.067,.045,.018]}><sphereGeometry args={[1,28,20]}/><meshStandardMaterial color="#a94f55" roughness={.8}/></mesh>
+   <mesh position={[0,1.024,.369]} scale={[.042,.012,.008]}><sphereGeometry args={[1,20,14]}/><meshBasicMaterial color="#fff5eb"/></mesh>
+   {/* Warm blush */}
+   {[-1,1].map(side=><mesh key={side} position={[side*.235,1.025,.296]} scale={[.068,.032,.012]}><sphereGeometry args={[1,24,16]}/><meshBasicMaterial color="#ee9f9c" transparent opacity={.42}/></mesh>)}
    {/* Layered hair cap, tapered fringe and soft side locks */}
    <mesh position={[0,1.245,-.075]} scale={[.392,.292,.342]} castShadow><sphereGeometry args={[1,40,32]}/><meshStandardMaterial color={hair} roughness={.96}/></mesh>
    <mesh position={[-.105,1.345,.235]} rotation={[0,0,-.28]} scale={[.245,.095,.145]} castShadow><sphereGeometry args={[1,28,20]}/><meshStandardMaterial color={hair} roughness={.96}/></mesh>
