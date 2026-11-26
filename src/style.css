@@ -57,3 +57,41 @@ nav button:hover{color:#62452f}
 .world .avatar-greeting,.avatar-greeting{padding:1px 4px!important;border:0!important;border-radius:5px!important;background:rgba(255,248,230,.78)!important;color:#a47738!important;font:500 7px/1.15 'Noto Sans KR',sans-serif!important;box-shadow:none!important}
 .world .avatar-bubble,.avatar-bubble{box-sizing:border-box!important;width:auto!important;min-width:0!important;max-width:104px!important;padding:3px 5px!important;border:1px solid rgba(232,217,197,.72)!important;border-radius:7px!important;background:rgba(255,250,242,.84)!important;color:#4e4034!important;font:400 7px/1.25 'Noto Sans KR',sans-serif!important;text-align:center!important;box-shadow:0 1px 3px rgba(55,38,24,.08)!important;overflow-wrap:anywhere!important;word-break:keep-all!important}
 .avatar-bubble:after{display:none!important}
+
+
+/* Primary touch control: keep the joystick visible on every viewport */
+.world .joystick{
+  display:block!important;
+  position:absolute!important;
+  left:clamp(12px,2.5vw,24px)!important;
+  bottom:calc(16px + env(safe-area-inset-bottom, 0px))!important;
+  width:clamp(112px,29vw,136px)!important;
+  height:clamp(112px,29vw,136px)!important;
+  z-index:12!important;
+  border:2px solid rgba(255,255,255,.94)!important;
+  background:rgba(255,250,240,.76)!important;
+  box-shadow:0 5px 22px rgba(52,37,26,.24)!important;
+  touch-action:none!important;
+  -webkit-tap-highlight-color:transparent;
+  pointer-events:auto!important;
+}
+.world .joystick-knob{
+  width:48px!important;height:48px!important;
+  margin:-24px!important;
+  background:#805b3d!important;
+  border:3px solid #fffaf0!important;
+  box-shadow:0 3px 10px rgba(52,37,26,.28)!important;
+  pointer-events:none!important;
+}
+@media(max-width:650px){
+  .world .joystick{
+    left:12px!important;
+    bottom:calc(12px + env(safe-area-inset-bottom, 0px))!important;
+    width:clamp(112px,31vw,132px)!important;
+    height:clamp(112px,31vw,132px)!important;
+  }
+  .world .joystick-knob{width:46px!important;height:46px!important;margin:-23px!important}
+  .world .tip{display:none}
+  .world .actions{right:10px!important;left:auto!important;bottom:calc(72px + env(safe-area-inset-bottom, 0px))!important;max-width:calc(100% - 150px)!important}
+  .world .chat-toggle{right:12px!important;bottom:calc(14px + env(safe-area-inset-bottom, 0px))!important}
+}
