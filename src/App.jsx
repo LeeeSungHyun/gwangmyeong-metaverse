@@ -44,14 +44,14 @@ function Person({p,positionRef}){
    {[-1,1].map(side=><mesh key={side} position={[side*.372,1.075,-.005]} scale={[.068,.085,.065]}><sphereGeometry args={[1,20,16]}/><meshStandardMaterial color={skin}/></mesh>)}
    {/* Warm eyes: smaller irises and restrained highlights */}
    {[-.132,.132].map(x=><React.Fragment key={x}>
-    <mesh position={[x,1.115,.326]} scale={[.057,.076,.024]}><sphereGeometry args={[1,28,20]}/><meshStandardMaterial color="#fffaf5" roughness={.4}/></mesh>
-    <mesh position={[x+.003,1.112,.348]} scale={[.039,.058,.019]}><sphereGeometry args={[1,26,18]}/><meshStandardMaterial color={female?'#594139':'#493832'} roughness={.28}/></mesh>
-    <mesh position={[x-.011,1.139,.366]} scale={[.012,.016,.008]}><sphereGeometry args={[1,14,12]}/><meshBasicMaterial color="#ffffff"/></mesh>
+    <mesh position={[x,1.115,.326]} scale={[.046,.061,.022]}><sphereGeometry args={[1,28,20]}/><meshStandardMaterial color="#fffaf5" roughness={.4}/></mesh>
+    <mesh position={[x+.003,1.112,.345]} scale={[.032,.047,.018]}><sphereGeometry args={[1,26,18]}/><meshStandardMaterial color={female?'#594139':'#493832'} roughness={.28}/></mesh>
+    <mesh position={[x-.009,1.132,.362]} scale={[.010,.013,.007]}><sphereGeometry args={[1,14,12]}/><meshBasicMaterial color="#ffffff"/></mesh>
    </React.Fragment>)}
    {/* Fine eyebrows, subtle warmth and a small curved smile */}
    {[-1,1].map(side=><React.Fragment key={side}>
     <mesh position={[side*.132,1.222,.329]} rotation={[0,0,side*-.08]}><capsuleGeometry args={[.009,.052,4,8]}/><meshStandardMaterial color={hair} roughness={.9}/></mesh>
-    <mesh position={[side*.235,1.025,.296]} scale={[.055,.023,.009]}><sphereGeometry args={[1,20,14]}/><meshBasicMaterial color="#e9a6a0" transparent opacity={.27}/></mesh>
+    <mesh position={[side*.235,1.025,.296]} scale={[.055,.023,.009]}><sphereGeometry args={[1,20,14]}/><meshBasicMaterial color="#e9a6a0" transparent opacity={.32}/></mesh>
    </React.Fragment>)}
    <mesh position={[0,1.055,.354]} scale={[.014,.012,.009]}><sphereGeometry args={[1,16,12]}/><meshStandardMaterial color="#d5a18e" roughness={.9}/></mesh>
    <mesh position={[0,1.018,.354]}><tubeGeometry args={[new THREE.CatmullRomCurve3([new THREE.Vector3(-.035,0,0),new THREE.Vector3(-.018,-.012,.002),new THREE.Vector3(0,-.015,.003),new THREE.Vector3(.018,-.012,.002),new THREE.Vector3(.035,0,0)]),12,.006,6,false]}/><meshStandardMaterial color="#a96f68" roughness={.8}/></mesh>
