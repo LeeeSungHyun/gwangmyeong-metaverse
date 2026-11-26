@@ -24,8 +24,8 @@ function Person({p,positionRef}){
   if(legs.current)legs.current.rotation.x=THREE.MathUtils.damp(legs.current.rotation.x,kneeling?1.12:sitting&&p.sitType==='chair'?-Math.PI/2:0,10,d);
   if(leftLeg.current&&rightLeg.current){const gait=walking?stride*.46:0;leftLeg.current.rotation.x=THREE.MathUtils.damp(leftLeg.current.rotation.x,gait,walking?16:10,d);rightLeg.current.rotation.x=THREE.MathUtils.damp(rightLeg.current.rotation.x,-gait,walking?16:10,d)}
   if(body.current){body.current.scale.y=THREE.MathUtils.damp(body.current.scale.y,1+(walking?0:breath*.012),walking?14:5,d);body.current.rotation.x=THREE.MathUtils.damp(body.current.rotation.x,praying?-.13:walking?-.045:breath*.008,8,d);body.current.rotation.z=THREE.MathUtils.damp(body.current.rotation.z,waving?Math.sin(t*2.1)*.008:walking?Math.sin(t*4.75)*.012:0,8,d)}
-  if(leftArm.current){leftArm.current.position.x=THREE.MathUtils.damp(leftArm.current.position.x,praying?-.22:-.235,10,d);leftArm.current.rotation.x=THREE.MathUtils.damp(leftArm.current.rotation.x,praying?-.92:sitting?-.5:walking?stride*.38:0,10,d);leftArm.current.rotation.z=THREE.MathUtils.damp(leftArm.current.rotation.z,praying?.43:0,10,d)}
-  if(rightArm.current){rightArm.current.position.x=THREE.MathUtils.damp(rightArm.current.position.x,praying?.22:.235,10,d);rightArm.current.rotation.x=THREE.MathUtils.damp(rightArm.current.rotation.x,praying?-.92:sitting?-.5:walking?-stride*.38:waving?-.22:0,10,d);rightArm.current.rotation.z=THREE.MathUtils.damp(rightArm.current.rotation.z,praying?-.43:waving?2.28+Math.sin(t*2.1)*.11:walking?-.06:0,10,d)}
+  if(leftArm.current){leftArm.current.position.x=THREE.MathUtils.damp(leftArm.current.position.x,praying?-.22:-.235,10,d);leftArm.current.rotation.x=THREE.MathUtils.damp(leftArm.current.rotation.x,praying?-.92:sitting?-.5:walking?stride*.38:Math.sin(t*1.7)*.025,10,d);leftArm.current.rotation.z=THREE.MathUtils.damp(leftArm.current.rotation.z,praying?.43:walking?-.025:Math.sin(t*1.7)*.018,10,d)}
+  if(rightArm.current){rightArm.current.position.x=THREE.MathUtils.damp(rightArm.current.position.x,praying?.22:.235,10,d);rightArm.current.rotation.x=THREE.MathUtils.damp(rightArm.current.rotation.x,praying?-.92:sitting?-.5:walking?-stride*.38:waving?-.22:Math.sin(t*1.7+Math.PI)*.025,10,d);rightArm.current.rotation.z=THREE.MathUtils.damp(rightArm.current.rotation.z,praying?-.43:waving?2.28+Math.sin(t*2.1)*.11:walking?-.06:Math.sin(t*1.7+Math.PI)*.018,10,d)}
  });
  const female=p.gender==='female',skin='#f4d9c8',hair=female?'#765044':'#55443b',shirt=p.color||colors[0],shoe='#66575a';
  return <group ref={g} position={[p.x,0,p.z]} scale={.82}>
@@ -35,11 +35,13 @@ function Person({p,positionRef}){
    <mesh position={[0,.315,.018]} scale={[.235,.105,.195]} castShadow><sphereGeometry args={[1,24,18]}/><meshStandardMaterial color={shirt} roughness={.9}/></mesh>
    {/* Rounded face with calmer, more natural proportions */}
    <mesh position={[0,1.105,0]} scale={[.385,.405,.355]} castShadow><sphereGeometry args={[1,40,32]}/><meshStandardMaterial color={skin} roughness={.94}/></mesh>
-   {/* Hair follows the head shape, with a soft side-swept fringe */}
-   <mesh position={[0,1.245,-.075]} scale={[.39,.285,.34]} castShadow><sphereGeometry args={[1,36,28]}/><meshStandardMaterial color={hair} roughness={.96}/></mesh>
-   <mesh position={[-.155,1.355,.245]} rotation={[0,0,-.22]} scale={[.205,.105,.125]} castShadow><sphereGeometry args={[1,24,18]}/><meshStandardMaterial color={hair} roughness={.96}/></mesh>
-   <mesh position={[.055,1.37,.275]} rotation={[0,0,.12]} scale={[.22,.105,.12]} castShadow><sphereGeometry args={[1,24,18]}/><meshStandardMaterial color={hair} roughness={.96}/></mesh>
-   {female&&<><mesh position={[-.365,1.02,-.045]} scale={[.085,.285,.12]} castShadow><sphereGeometry args={[1,22,18]}/><meshStandardMaterial color={hair}/></mesh><mesh position={[.365,1.02,-.045]} scale={[.085,.285,.12]} castShadow><sphereGeometry args={[1,22,18]}/><meshStandardMaterial color={hair}/></mesh></>}
+   {/* Layered hair cap, tapered fringe and soft side locks */}
+   <mesh position={[0,1.245,-.075]} scale={[.392,.292,.342]} castShadow><sphereGeometry args={[1,40,32]}/><meshStandardMaterial color={hair} roughness={.96}/></mesh>
+   <mesh position={[-.105,1.345,.235]} rotation={[0,0,-.28]} scale={[.245,.095,.145]} castShadow><sphereGeometry args={[1,28,20]}/><meshStandardMaterial color={hair} roughness={.96}/></mesh>
+   <mesh position={[.105,1.365,.252]} rotation={[0,0,.16]} scale={[.205,.082,.13]} castShadow><sphereGeometry args={[1,28,20]}/><meshStandardMaterial color={hair} roughness={.96}/></mesh>
+   <mesh position={[-.315,1.115,.055]} rotation={[0,0,-.12]} scale={[.095,.245,.115]} castShadow><capsuleGeometry args={[1,.22,8,16]}/><meshStandardMaterial color={hair} roughness={.96}/></mesh>
+   <mesh position={[.315,1.115,.055]} rotation={[0,0,.12]} scale={[.095,.245,.115]} castShadow><capsuleGeometry args={[1,.22,8,16]}/><meshStandardMaterial color={hair} roughness={.96}/></mesh>
+   {female&&<><mesh position={[-.365,1.005,-.055]} scale={[.09,.30,.13]} castShadow><capsuleGeometry args={[1,.22,8,16]}/><meshStandardMaterial color={hair}/></mesh><mesh position={[.365,1.005,-.055]} scale={[.09,.30,.13]} castShadow><capsuleGeometry args={[1,.22,8,16]}/><meshStandardMaterial color={hair}/></mesh></>}
    {/* Small ears sit naturally at the sides */}
    {[-1,1].map(side=><mesh key={side} position={[side*.372,1.075,-.005]} scale={[.068,.085,.065]}><sphereGeometry args={[1,20,16]}/><meshStandardMaterial color={skin}/></mesh>)}
    {/* Warm eyes: smaller irises and restrained highlights */}
@@ -55,17 +57,20 @@ function Person({p,positionRef}){
    </React.Fragment>)}
    <mesh position={[0,1.055,.354]} scale={[.014,.012,.009]}><sphereGeometry args={[1,16,12]}/><meshStandardMaterial color="#d5a18e" roughness={.9}/></mesh>
    <mesh position={[0,1.018,.354]}><tubeGeometry args={[new THREE.CatmullRomCurve3([new THREE.Vector3(-.035,0,0),new THREE.Vector3(-.018,-.012,.002),new THREE.Vector3(0,-.015,.003),new THREE.Vector3(.018,-.012,.002),new THREE.Vector3(.035,0,0)]),12,.006,6,false]}/><meshStandardMaterial color="#a96f68" roughness={.8}/></mesh>
-   {/* Simple hoodie details */}
-   <mesh position={[0,.79,.205]} scale={[.14,.052,.045]}><sphereGeometry args={[1,20,16]}/><meshStandardMaterial color="#f1e6da" roughness={.95}/></mesh>
-   <mesh position={[0,.49,.244]} scale={[.105,.058,.012]}><sphereGeometry args={[1,20,16]}/><meshStandardMaterial color="#eee0d0" roughness={.95}/></mesh>
+   {/* Hood collar, drawstrings and a softly shaped front pocket */}
+   <mesh position={[0,.805,-.105]} scale={[.205,.19,.12]} castShadow><torusGeometry args={[.72,.18,10,28]}/><meshStandardMaterial color={shirt} roughness={.92}/></mesh>
+   <mesh position={[0,.79,.205]} scale={[.15,.055,.045]}><sphereGeometry args={[1,24,18]}/><meshStandardMaterial color="#f1e6da" roughness={.95}/></mesh>
+   {[-1,1].map(side=><mesh key={side} position={[side*.052,.685,.252]}><capsuleGeometry args={[.008,.12,4,8]}/><meshStandardMaterial color="#e8ddd0" roughness={.9}/></mesh>)}
+   <mesh position={[0,.465,.244]} scale={[.135,.075,.018]} castShadow><sphereGeometry args={[1,24,18]}/><meshStandardMaterial color={shirt} roughness={.94}/></mesh>
+   <mesh position={[0,.465,.263]} scale={[.105,.047,.009]}><sphereGeometry args={[1,20,14]}/><meshStandardMaterial color={shirt} roughness={.94}/></mesh>
   </group>
   {/* Relaxed rounded sleeves and hands */}
   <group ref={leftArm} position={[-.285,.7,0]}><mesh position={[0,-.105,0]} rotation={[0,0,-.2]}><capsuleGeometry args={[.09,.16,8,16]}/><meshStandardMaterial color={shirt} roughness={.9}/></mesh><mesh position={[-.018,-.22,.035]} scale={[.078,.078,.075]}><sphereGeometry args={[1,20,16]}/><meshStandardMaterial color={skin}/></mesh></group>
   <group ref={rightArm} position={[.285,.7,0]}><mesh position={[0,-.105,0]} rotation={[0,0,.2]}><capsuleGeometry args={[.09,.16,8,16]}/><meshStandardMaterial color={shirt} roughness={.9}/></mesh><mesh position={[.018,-.22,.035]} scale={[.078,.078,.075]}><sphereGeometry args={[1,20,16]}/><meshStandardMaterial color={skin}/></mesh></group>
   {/* Short legs and understated soft shoes */}
   <group ref={legs}>
-   <group ref={leftLeg} position={[-.125,.18,0]}><mesh position={[0,-.005,0]}><capsuleGeometry args={[.083,.13,7,14]}/><meshStandardMaterial color="#f0d8c8" roughness={.94}/></mesh><mesh position={[-.012,-.095,.075]} scale={[1,.7,1.12]}><sphereGeometry args={[.095,20,16]}/><meshStandardMaterial color={shoe} roughness={.88}/></mesh></group>
-   <group ref={rightLeg} position={[.125,.18,0]}><mesh position={[0,-.005,0]}><capsuleGeometry args={[.083,.13,7,14]}/><meshStandardMaterial color="#f0d8c8" roughness={.94}/></mesh><mesh position={[.012,-.095,.075]} scale={[1,.7,1.12]}><sphereGeometry args={[.095,20,16]}/><meshStandardMaterial color={shoe} roughness={.88}/></mesh></group>
+   <group ref={leftLeg} position={[-.125,.18,0]}><mesh position={[0,-.005,0]}><capsuleGeometry args={[.083,.13,7,14]}/><meshStandardMaterial color="#f0d8c8" roughness={.94}/></mesh><mesh position={[-.012,-.095,.075]} scale={[1,.62,1.18]}><sphereGeometry args={[.095,20,16]}/><meshStandardMaterial color={shoe} roughness={.88}/></mesh></group>
+   <group ref={rightLeg} position={[.125,.18,0]}><mesh position={[0,-.005,0]}><capsuleGeometry args={[.083,.13,7,14]}/><meshStandardMaterial color="#f0d8c8" roughness={.94}/></mesh><mesh position={[.012,-.095,.075]} scale={[1,.62,1.18]}><sphereGeometry args={[.095,20,16]}/><meshStandardMaterial color={shoe} roughness={.88}/></mesh></group>
   </group>
   {p.carryingCushion&&<group position={[0,.3,.43]} rotation={[-.22,0,0]}><mesh castShadow><boxGeometry args={[.52,.12,.4]}/><meshStandardMaterial color="#eee9df" roughness={.94}/></mesh><mesh position={[0,.066,0]}><boxGeometry args={[.47,.012,.35]}/><meshStandardMaterial color="#d2c8b8" roughness={.9}/></mesh></group>}
   <Html position={[0,1.66,0]} center distanceFactor={4} zIndexRange={[30,0]}><div className="avatar-name">{p.name}</div></Html>
