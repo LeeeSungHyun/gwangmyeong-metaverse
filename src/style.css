@@ -27,3 +27,26 @@
 .music-control label{display:flex;align-items:center}
 .music-control input[type=range]{width:88px;height:4px;accent-color:#956e4d;cursor:pointer}
 @media(max-width:650px){.music-control{top:12px;right:10px;gap:6px;padding:6px 8px}.music-toggle{font-size:9px;gap:4px}.music-toggle svg{width:14px;height:14px}.music-control input[type=range]{width:58px}}
+
+/* Immersive sanctuary refresh */
+header{background:rgba(255,250,244,.96);backdrop-filter:blur(14px);box-shadow:0 3px 18px rgba(69,47,29,.06)}
+.logo{border-radius:13px;background:linear-gradient(145deg,#a17b54,#6e4e37);box-shadow:0 4px 12px rgba(93,61,36,.18)}
+.world{background:radial-gradient(ellipse at 50% 35%,#f0e8dc 0%,#d8cbb9 100%)}
+.tag,.tip{box-shadow:0 5px 20px rgba(57,39,25,.12);backdrop-filter:blur(12px)}
+.actions{border:1px solid rgba(255,255,255,.82);box-shadow:0 9px 28px rgba(55,38,24,.16);backdrop-filter:blur(16px)}
+.actions button{transition:background .18s ease,transform .18s ease}
+.actions button:active{transform:translateY(1px) scale(.97)}
+.chat-toggle{box-shadow:0 7px 20px rgba(76,48,26,.24);transition:transform .18s ease,background .18s ease}
+.chat-toggle:hover{transform:translateY(-2px);background:#76543a}
+nav{background:rgba(255,250,244,.97);box-shadow:0 -4px 18px rgba(69,47,29,.04)}
+nav button{transition:background .18s ease,color .18s ease}
+nav button:hover{color:#62452f}
+.drawer{background:linear-gradient(160deg,#fffaf4 0%,#f8f0e5 100%)}
+.drawer h2{letter-spacing:-.5px}
+.space-grid{display:grid;gap:12px;margin-top:22px}
+.space-card{display:grid;grid-template-columns:48px 1fr;grid-template-rows:auto auto;align-items:center;column-gap:13px;text-align:left;padding:15px;border:1px solid #e8dccb;border-radius:16px;background:rgba(255,255,255,.78);color:#554332;cursor:pointer;transition:transform .18s ease,border-color .18s ease,box-shadow .18s ease}
+.space-card:hover{transform:translateY(-2px);border-color:#c9ad86;box-shadow:0 8px 20px rgba(83,57,34,.1)}
+.space-symbol{grid-row:1/3;width:46px;height:46px;border-radius:14px;display:grid;place-items:center;background:#f0e5d4;color:#8b6846;font-size:22px}
+.space-card b{font-size:14px}
+.space-card small{margin-top:4px;color:#98836b;font-size:11px;line-height:1.5}
+@media(max-width:650px){.space-card{padding:12px}.space-symbol{width:42px;height:42px}}
