@@ -206,6 +206,28 @@ const sanctuaryFlags=[
 {name:'싱가포르',colors:['#b83232','#ffffff','#ffffff']},
 {name:'파키스탄',colors:['#39845a','#ffffff','#39845a']}
 ];
+
+const flagWallPositions=(()=>{
+ const radius=18.38,depth=radius*.946,steps=2000;
+ const start=Math.asin((-23.4+10)/depth),end=Math.asin((-6.6+10)/depth);
+ const points=[];
+ let total=0,previous=null;
+ for(let i=0;i<=steps;i++){
+  const angle=start+(end-start)*i/steps;
+  const point={angle,x:radius*Math.cos(angle),z:-10+depth*Math.sin(angle)};
+  if(previous) total+=Math.hypot(point.x-previous.x,point.z-previous.z);
+  points.push({ ...point,distance:total });
+  previous=point;
+ }
+ return Array.from({length:25},(_,i)=>{
+  const target=total*i/24;
+  let low=0,high=points.length-1;
+  while(low<high){const mid=(low+high)>>1;if(points[mid].distance<target)low=mid+1;else high=mid;}
+  const b=points[low],a=points[Math.max(0,low-1)];
+  const t=b.distance===a.distance?0:(target-a.distance)/(b.distance-a.distance);
+  return {x:a.x+(b.x-a.x)*t,z:a.z+(b.z-a.z)*t};
+ });
+})();
 function FlagArtwork({flag}){const texture=useMemo(()=>{const canvas=document.createElement('canvas');canvas.width=320;canvas.height=200;const c=canvas.getContext('2d');const fill=(color,x=0,y=0,w=320,h=200)=>{c.fillStyle=color;c.fillRect(x,y,w,h)};const star=(x,y,r,color,points=5)=>{c.fillStyle=color;c.beginPath();for(let i=0;i<points*2;i++){const a=-Math.PI/2+i*Math.PI/points,rr=i%2?r*.42:r;c.lineTo(x+Math.cos(a)*rr,y+Math.sin(a)*rr)}c.closePath();c.fill()};const h=(a,b,d)=>{fill(a,0,0,320,67);fill(b,0,67,320,66);fill(d,0,133,320,67)};switch(flag.name){
 case'대한민국':fill('#fff');c.fillStyle='#c8323e';c.beginPath();c.arc(160,100,43,Math.PI,0);c.fill();c.fillStyle='#244b8f';c.beginPath();c.arc(160,100,43,0,Math.PI);c.fill();c.fillStyle='#c8323e';c.beginPath();c.arc(160,79,21,0,Math.PI*2);c.fill();c.fillStyle='#244b8f';c.beginPath();c.arc(160,121,21,0,Math.PI*2);c.fill();[[55,48,0],[265,48,1],[55,152,2],[265,152,3]].forEach(([x,y,k])=>{c.save();c.translate(x,y);c.rotate(k%2?.65:-.65);for(let i=0;i<3;i++){if(k===1||k===2){fill('#171717',-19,-18+i*12,38,7);if(i===1)fill('#fff',-19,-18+i*12,13,7)}else fill('#171717',-19,-18+i*12,38,7)}c.restore()});break;
 case'미국':for(let i=0;i<13;i++)fill(i%2?'#fff':'#b8323b',0,i*200/13,320,200/13);fill('#24416f',0,0,132,108);for(let y=12;y<100;y+=18)for(let x=12;x<125;x+=20)star(x,y,6,'#fff');break;
@@ -234,7 +256,7 @@ case'베트남':fill('#b83232');star(160,100,53,'#f5d34f');break;
 case'남아공':fill('#24416f');fill('#b83232',0,0,320,66);fill('#39845a',0,66,320,68);fill('#fff',0,132,320,68);c.fillStyle='#e4c34b';c.beginPath();c.moveTo(0,0);c.lineTo(120,100);c.lineTo(0,200);c.closePath();c.fill();c.fillStyle='#b83232';c.beginPath();c.moveTo(0,20);c.lineTo(105,100);c.lineTo(0,180);c.closePath();c.fill();break;
 default:h(...flag.colors)}
 return new THREE.CanvasTexture(canvas)},[flag]);return <mesh position={[0,0,.078]}><planeGeometry args={[.72,.45]}/><meshBasicMaterial map={texture} side={THREE.DoubleSide}/></mesh>}
-function FlagGallery(){return <>{[-1,1].map(side=><group key={side}>{sanctuaryFlags.map((flag,i)=>{const row=Math.floor(i/25),index=i%25,z=-23.4+index*.70,wallX=Math.sqrt(Math.max(0,18.38**2-((z+10)/.946)**2));return <group key={flag.name} position={[side*(wallX-.12),row===0?4.05:3.05,z]} rotation={[0,side<0?Math.PI/2:-Math.PI/2,0]}><Block p={[0,0,0]} s={[.78,.51,.07]} c="#6d513a"/><Block p={[0,0,.042]} s={[.74,.47,.025]} c="#e7dfd1"/><FlagArtwork flag={flag}/></group>})}</group>)}</>}
+function FlagGallery(){return <>{[-1,1].map(side=><group key={side}>{sanctuaryFlags.map((flag,i)=>{const row=Math.floor(i/25),index=i%25,{x,z}=flagWallPositions[index];return <group key={flag.name} position={[side*(x-.12),row===0?4.05:3.05,z]} rotation={[0,side<0?Math.PI/2:-Math.PI/2,0]}><Block p={[0,0,0]} s={[.78,.51,.07]} c="#6d513a"/><Block p={[0,0,.042]} s={[.74,.47,.025]} c="#e7dfd1"/><FlagArtwork flag={flag}/></group>})}</group>)}</>}
 
 const FixedArchitecture=React.memo(function FixedArchitecture(){return <><ambientLight intensity={1.35}/><directionalLight position={[-12,18,16]} intensity={1.8}/><pointLight position={[0,8,-34]} intensity={30} distance={42} color="#ffe3ad"/><mesh position={[0,.005,-10]} rotation={[-Math.PI/2,0,0]} receiveShadow><shapeGeometry args={[sanctuaryFloorShape,64]}/><meshStandardMaterial color="#a99173" roughness={.9} side={THREE.DoubleSide}/></mesh><mesh position={[0,2.85,-10]} scale={[1,1,.946]}><cylinderGeometry args={[18.38,18.38,5.7,160,1,true]}/><meshStandardMaterial color="#806044" side={THREE.BackSide} roughness={.94}/></mesh><FlagGallery/><group position={[0,5.55,-10]}><mesh rotation={[-Math.PI/2,0,0]}><shapeGeometry args={[sanctuaryFloorShape,64]}/><meshStandardMaterial color="#9b876e" side={THREE.DoubleSide} roughness={.95}/></mesh>{Array.from({length:9},(_,i)=><group key={`ceiling-rib-${i}`} rotation={[0,i*Math.PI/9,0]}><Block p={[0,-.015,0]} s={[.12,.16,34]} c={i%2?"#8a6c4e":"#a48763"}/></group>)}</group><group scale={.65}><Block p={[0,.28,-29.25]} s={[22,.72,7.4]} c="#812b3b"/><Block p={[0,.28,-34.7]} s={[22,.72,3.6]} c="#812b3b"/><mesh position={[0,.641,-29.25]} rotation={[-Math.PI/2,0,0]} receiveShadow><planeGeometry args={[21.8,7.2]}/><meshStandardMaterial color="#812b3b" roughness={.96}/></mesh><Block p={[0,4.15,-37.5]} s={[28,7.8,.22]} c="#987b5e"/>{Array.from({length:13},(_,i)=><Block key={`rear-wood-slat-${i}`} p={[0,.85+i*.55,-37.36]} s={[27.5,.055,.08]} c={i%2?"#72583f":"#b18e68"}/>)}<Block p={[0,3.1,-36.6]} s={[14.2,4.15,.16]} c="#171a1d"/><Block p={[0,3.1,-36.49]} s={[13.75,3.72,.04]} c="#17191c"/><Block p={[0,5.22,-36.44]} s={[13.8,.055,.06]} c="#8c755d"/>{[-1,1].map(side=><group key={`side-screen-${side}`} position={[side*17.3,3.45,-36.58]}><Block p={[0,0,0]} s={[5.7,3.35,.18]} c="#6f5943"/><Block p={[0,0,-.105]} s={[5.35,3.02,.04]} c="#c9c9c2"/><Block p={[0,0,-.135]} s={[5.12,2.78,.025]} c="#d7d8d2"/></group>)}<Block p={[-11.2,3.75,-36.6]} s={[2.4,4.5,.12]} c="#cbb18d"/><Block p={[11.2,3.75,-36.6]} s={[2.4,4.5,.12]} c="#cbb18d"/><Block p={[0,1.08,-28.2]} s={[1.55,1.35,.9]} c="#79533b"/><Block p={[0,.78,-27.7]} s={[2.5,.12,1.2]} c="#a7835e"/><BandSetup/></group><SoundBooth/><SeatField/>{Array.from({length:6},(_,i)=>{const angle=-1.12+i*(2.24/5),x=17.85*Math.sin(angle),z=-10+16.95*Math.cos(angle);return <group key={`rear-door-${i}`} position={[x,0,z]} rotation={[0,angle,0]}><Block p={[-1.82,1.72,0]} s={[.24,3.44,.58]} c="#d8c8b3" opacity={1}/><Block p={[1.82,1.72,0]} s={[.24,3.44,.58]} c="#d8c8b3" opacity={1}/><Block p={[0,3.43,0]} s={[3.88,.24,.58]} c="#d8c8b3" opacity={1}/><Block p={[0,1.68,-.14]} s={[3.48,3.18,.18]} c="#916b4b" opacity={1}/><Block p={[0,1.68,-.25]} s={[3.18,2.9,.05]} c="#684832" opacity={1}/><Block p={[-.78,1.68,-.29]} s={[.06,2.66,.035]} c="#916b4b" opacity={1}/><Block p={[.78,1.68,-.29]} s={[.06,2.66,.035]} c="#916b4b" opacity={1}/><Block p={[1.28,1.55,-.34]} s={[.055,.22,.06]} c="#d5b36f" opacity={1}/><Block p={[0,.055,-.12]} s={[3.65,.11,.78]} c="#b9a58e" opacity={1}/></group>})}</>});
 
