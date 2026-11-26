@@ -27,40 +27,44 @@ function Person({p,positionRef}){
   if(leftArm.current){leftArm.current.position.x=THREE.MathUtils.damp(leftArm.current.position.x,praying?-.22:-.235,10,d);leftArm.current.rotation.x=THREE.MathUtils.damp(leftArm.current.rotation.x,praying?-.92:sitting?-.5:walking?stride*.38:0,10,d);leftArm.current.rotation.z=THREE.MathUtils.damp(leftArm.current.rotation.z,praying?.43:0,10,d)}
   if(rightArm.current){rightArm.current.position.x=THREE.MathUtils.damp(rightArm.current.position.x,praying?.22:.235,10,d);rightArm.current.rotation.x=THREE.MathUtils.damp(rightArm.current.rotation.x,praying?-.92:sitting?-.5:walking?-stride*.38:waving?-.22:0,10,d);rightArm.current.rotation.z=THREE.MathUtils.damp(rightArm.current.rotation.z,praying?-.43:waving?2.28+Math.sin(t*2.1)*.11:walking?-.06:0,10,d)}
  });
- const female=p.gender==='female',skin='#f8d9c4',hair=female?'#674238':'#51413a',shirt=p.color||colors[0],shoe='#514b55';
+ const female=p.gender==='female',skin='#f8ddca',hair=female?'#684438':'#514039',shirt=p.color||colors[0],shoe='#554b50';
  return <group ref={g} position={[p.x,0,p.z]} scale={.82}>
   <group ref={body}>
-   {/* Soft rounded hoodie body */}
-   <mesh position={[0,.57,0]} scale={[.31,.34,.255]} castShadow><sphereGeometry args={[1,24,20]}/><meshStandardMaterial color={shirt} roughness={.78}/></mesh>
-   <mesh position={[0,.34,.015]} scale={[.245,.12,.22]} castShadow><sphereGeometry args={[1,20,16]}/><meshStandardMaterial color={shirt} roughness={.8}/></mesh>
-   {/* Oversized round face */}
-   <mesh position={[0,1.105,0]} scale={[1,.99,.92]} castShadow><sphereGeometry args={[.455,32,28]}/><meshStandardMaterial color={skin} roughness={.82}/></mesh>
-   {/* Soft hair cap and fringe */}
-   <mesh position={[0,1.385,-.035]} scale={[1.01,.43,.94]} castShadow><sphereGeometry args={[.455,28,20]}/><meshStandardMaterial color={hair} roughness={.92}/></mesh>
-   <mesh position={[0,1.27,.335]} scale={[.37,.16,.16]} castShadow><sphereGeometry args={[1,20,16]}/><meshStandardMaterial color={hair} roughness={.92}/></mesh>
-   {female&&<><mesh position={[-.39,1.04,-.005]} scale={[.13,.34,.15]} castShadow><sphereGeometry args={[1,18,14]}/><meshStandardMaterial color={hair}/></mesh><mesh position={[.39,1.04,-.005]} scale={[.13,.34,.15]} castShadow><sphereGeometry args={[1,18,14]}/><meshStandardMaterial color={hair}/></mesh><mesh position={[0,1.39,-.12]} scale={[.27,.12,.27]}><sphereGeometry args={[1,18,14]}/><meshStandardMaterial color={hair}/></mesh></>}
-   {/* Tiny rounded ears */}
-   {[-1,1].map(side=><mesh key={side} position={[side*.432,1.08,0]} scale={[.105,.13,.085]}><sphereGeometry args={[1,16,12]}/><meshStandardMaterial color={skin}/></mesh>)}
-   {/* Big glossy eyes */}
-   {[-.16,.16].map(x=><React.Fragment key={x}>
-    <mesh position={[x,1.115,.394]} scale={[.078,.105,.035]}><sphereGeometry args={[1,20,16]}/><meshStandardMaterial color="#fffdf9" roughness={.28}/></mesh>
-    <mesh position={[x+.006,1.108,.425]} scale={[.052,.078,.025]}><sphereGeometry args={[1,20,16]}/><meshStandardMaterial color="#352b29" roughness={.22}/></mesh>
-    <mesh position={[x-.012,1.143,.447]} scale={[.019,.025,.012]}><sphereGeometry args={[1,12,10]}/><meshBasicMaterial color="#ffffff"/></mesh>
-    <mesh position={[x+.025,1.078,.447]} scale={[.009,.012,.008]}><sphereGeometry args={[1,10,8]}/><meshBasicMaterial color="#f4d9bd"/></mesh>
+   {/* Tiny plush hoodie body */}
+   <mesh position={[0,.53,0]} scale={[.285,.32,.245]} castShadow><sphereGeometry args={[1,28,24]}/><meshStandardMaterial color={shirt} roughness={.88}/></mesh>
+   <mesh position={[0,.315,.015]} scale={[.225,.105,.19]} castShadow><sphereGeometry args={[1,22,18]}/><meshStandardMaterial color={shirt} roughness={.88}/></mesh>
+   {/* Big soft face */}
+   <mesh position={[0,1.105,0]} scale={[1,.98,.91]} castShadow><sphereGeometry args={[.455,40,32]}/><meshStandardMaterial color={skin} roughness={.9}/></mesh>
+   {/* Hair is a back cap, not a helmet */}
+   <mesh position={[0,1.245,-.105]} scale={[1.015,.67,.83]} castShadow><sphereGeometry args={[.455,32,24]}/><meshStandardMaterial color={hair} roughness={.95}/></mesh>
+   {/* Three soft fringe locks framing the forehead */}
+   <mesh position={[-.19,1.385,.265]} rotation={[0,0,-.2]} scale={[.24,.16,.16]} castShadow><sphereGeometry args={[1,22,18]}/><meshStandardMaterial color={hair} roughness={.95}/></mesh>
+   <mesh position={[.015,1.405,.29]} scale={[.22,.17,.15]} castShadow><sphereGeometry args={[1,22,18]}/><meshStandardMaterial color={hair} roughness={.95}/></mesh>
+   <mesh position={[.205,1.36,.255]} rotation={[0,0,.25]} scale={[.2,.145,.145]} castShadow><sphereGeometry args={[1,22,18]}/><meshStandardMaterial color={hair} roughness={.95}/></mesh>
+   {female&&<><mesh position={[-.405,1.02,-.045]} scale={[.105,.3,.13]} castShadow><sphereGeometry args={[1,20,16]}/><meshStandardMaterial color={hair}/></mesh><mesh position={[.405,1.02,-.045]} scale={[.105,.3,.13]} castShadow><sphereGeometry args={[1,20,16]}/><meshStandardMaterial color={hair}/></mesh></>}
+   {/* Small ears */}
+   {[-1,1].map(side=><mesh key={side} position={[side*.438,1.08,-.005]} scale={[.105,.12,.085]}><sphereGeometry args={[1,18,14]}/><meshStandardMaterial color={skin}/></mesh>)}
+   {/* Large warm eyes with layered highlights */}
+   {[-.158,.158].map(x=><React.Fragment key={x}>
+    <mesh position={[x,1.12,.389]} scale={[.078,.105,.035]}><sphereGeometry args={[1,24,18]}/><meshStandardMaterial color="#fffaf4" roughness={.3}/></mesh>
+    <mesh position={[x+.004,1.112,.421]} scale={[.055,.079,.027]}><sphereGeometry args={[1,24,18]}/><meshStandardMaterial color="#382b28" roughness={.18}/></mesh>
+    <mesh position={[x-.015,1.148,.445]} scale={[.021,.026,.012]}><sphereGeometry args={[1,14,12]}/><meshBasicMaterial color="#ffffff"/></mesh>
+    <mesh position={[x+.025,1.083,.445]} scale={[.009,.012,.008]}><sphereGeometry args={[1,12,10]}/><meshBasicMaterial color="#f2d4bb"/></mesh>
    </React.Fragment>)}
-   {/* Rosy cheeks and tiny smile */}
-   {[-1,1].map(side=><mesh key={side} position={[side*.265,1.005,.347]} scale={[.095,.045,.018]}><sphereGeometry args={[1,16,12]}/><meshBasicMaterial color="#ed9ca2" transparent opacity={.58}/></mesh>)}
-   <mesh position={[0,.985,.414]} scale={[.035,.018,.012]}><sphereGeometry args={[1,14,10]}/><meshStandardMaterial color="#bd7775" roughness={.55}/></mesh>
-   {/* Hoodie pocket */}
-   <mesh position={[0,.49,.238]} scale={[.13,.085,.018]}><sphereGeometry args={[1,16,12]}/><meshStandardMaterial color={shirt} roughness={.82}/></mesh>
+   {/* Blush and a tiny curved-looking smile */}
+   {[-1,1].map(side=><mesh key={side} position={[side*.275,1.005,.337]} scale={[.09,.043,.016]}><sphereGeometry args={[1,18,14]}/><meshBasicMaterial color="#ef9fa5" transparent opacity={.62}/></mesh>)}
+   <mesh position={[0,.982,.405]} scale={[.031,.018,.012]}><sphereGeometry args={[1,16,12]}/><meshStandardMaterial color="#b97572" roughness={.6}/></mesh>
+   {/* Small hoodie collar and pocket */}
+   <mesh position={[0,.755,.19]} scale={[.13,.065,.055]}><sphereGeometry args={[1,18,14]}/><meshStandardMaterial color="#f2e6d8" roughness={.9}/></mesh>
+   <mesh position={[0,.49,.222]} scale={[.115,.07,.018]}><sphereGeometry args={[1,18,14]}/><meshStandardMaterial color="#f0dfcc" roughness={.92}/></mesh>
   </group>
-  {/* Short plush arms and mitten-like hands */}
-  <group ref={leftArm} position={[-.285,.72,0]}><mesh position={[0,-.105,0]} rotation={[0,0,-.2]}><capsuleGeometry args={[.078,.13,6,12]}/><meshStandardMaterial color={shirt} roughness={.8}/></mesh><mesh position={[-.012,-.215,.035]} scale={[.09,.085,.085]}><sphereGeometry args={[1,16,12]}/><meshStandardMaterial color={skin}/></mesh></group>
-  <group ref={rightArm} position={[.285,.72,0]}><mesh position={[0,-.105,0]} rotation={[0,0,.2]}><capsuleGeometry args={[.078,.13,6,12]}/><meshStandardMaterial color={shirt} roughness={.8}/></mesh><mesh position={[.012,-.215,.035]} scale={[.09,.085,.085]}><sphereGeometry args={[1,16,12]}/><meshStandardMaterial color={skin}/></mesh></group>
-  {/* Tiny legs and rounded shoes */}
+  {/* Short rounded sleeves and mitten hands */}
+  <group ref={leftArm} position={[-.265,.69,0]}><mesh position={[0,-.095,0]} rotation={[0,0,-.24]}><capsuleGeometry args={[.085,.115,7,14]}/><meshStandardMaterial color={shirt} roughness={.88}/></mesh><mesh position={[-.015,-.2,.035]} scale={[.09,.083,.083]}><sphereGeometry args={[1,18,14]}/><meshStandardMaterial color={skin}/></mesh></group>
+  <group ref={rightArm} position={[.265,.69,0]}><mesh position={[0,-.095,0]} rotation={[0,0,.24]}><capsuleGeometry args={[.085,.115,7,14]}/><meshStandardMaterial color={shirt} roughness={.88}/></mesh><mesh position={[.015,-.2,.035]} scale={[.09,.083,.083]}><sphereGeometry args={[1,18,14]}/><meshStandardMaterial color={skin}/></mesh></group>
+  {/* Stubby legs and soft round shoes */}
   <group ref={legs}>
-   <group ref={leftLeg} position={[-.13,.19,0]}><mesh position={[0,-.015,0]}><capsuleGeometry args={[.085,.12,5,10]}/><meshStandardMaterial color="#e7cdb5" roughness={.9}/></mesh><mesh position={[-.012,-.105,.085]} scale={[1,.72,1.2]}><sphereGeometry args={[.105,16,12]}/><meshStandardMaterial color={shoe} roughness={.75}/></mesh></group>
-   <group ref={rightLeg} position={[.13,.19,0]}><mesh position={[0,-.015,0]}><capsuleGeometry args={[.085,.12,5,10]}/><meshStandardMaterial color="#e7cdb5" roughness={.9}/></mesh><mesh position={[.012,-.105,.085]} scale={[1,.72,1.2]}><sphereGeometry args={[.105,16,12]}/><meshStandardMaterial color={shoe} roughness={.75}/></mesh></group>
+   <group ref={leftLeg} position={[-.12,.18,0]}><mesh position={[0,-.005,0]}><capsuleGeometry args={[.082,.11,6,12]}/><meshStandardMaterial color="#f0d8c6" roughness={.92}/></mesh><mesh position={[-.012,-.095,.082]} scale={[1,.72,1.18]}><sphereGeometry args={[.105,18,14]}/><meshStandardMaterial color={shoe} roughness={.82}/></mesh></group>
+   <group ref={rightLeg} position={[.12,.18,0]}><mesh position={[0,-.005,0]}><capsuleGeometry args={[.082,.11,6,12]}/><meshStandardMaterial color="#f0d8c6" roughness={.92}/></mesh><mesh position={[.012,-.095,.082]} scale={[1,.72,1.18]}><sphereGeometry args={[.105,18,14]}/><meshStandardMaterial color={shoe} roughness={.82}/></mesh></group>
   </group>
   {p.carryingCushion&&<group position={[0,.3,.43]} rotation={[-.22,0,0]}><mesh castShadow><boxGeometry args={[.52,.12,.4]}/><meshStandardMaterial color="#eee9df" roughness={.94}/></mesh><mesh position={[0,.066,0]}><boxGeometry args={[.47,.012,.35]}/><meshStandardMaterial color="#d2c8b8" roughness={.9}/></mesh></group>}
   <Html position={[0,1.66,0]} center distanceFactor={4} zIndexRange={[30,0]}><div className="avatar-name">{p.name}</div></Html>
