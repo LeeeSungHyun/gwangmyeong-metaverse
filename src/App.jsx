@@ -204,7 +204,57 @@ const sanctuaryFlags=[
 {name:'칠레',colors:['#ffffff','#b83232','#24416f']},
 {name:'말레이시아',colors:['#b83232','#ffffff','#24416f']},
 {name:'싱가포르',colors:['#b83232','#ffffff','#ffffff']},
-{name:'파키스탄',colors:['#39845a','#ffffff','#39845a']}
+{name:'파키스탄',colors:['#39845a','#ffffff','#39845a']},
+{name:'루마니아',colors:['#244b8f','#e4c34b','#b83232']},
+{name:'불가리아',colors:['#ffffff','#39845a','#b83232']},
+{name:'헝가리',colors:['#b83232','#ffffff','#39845a']},
+{name:'세르비아',colors:['#b83232','#24416f','#ffffff']},
+{name:'크로아티아',colors:['#b83232','#ffffff','#24416f']},
+{name:'슬로바키아',colors:['#ffffff','#24416f','#b83232']},
+{name:'슬로베니아',colors:['#ffffff','#24416f','#b83232']},
+{name:'리투아니아',colors:['#e4c34b','#39845a','#b83232']},
+{name:'라트비아',colors:['#b83232','#ffffff','#b83232']},
+{name:'에스토니아',colors:['#24416f','#ffffff','#242424']},
+{name:'아이슬란드',colors:['#24416f','#ffffff','#b83232']},
+{name:'룩셈부르크',colors:['#b83232','#ffffff','#75aadb']},
+{name:'몰타',colors:['#ffffff','#b83232','#ffffff']},
+{name:'키프로스',colors:['#ffffff','#d9a84a','#ffffff']},
+{name:'알바니아',colors:['#b83232','#242424','#b83232']},
+{name:'북마케도니아',colors:['#b83232','#e4a832','#b83232']},
+{name:'몬테네그로',colors:['#b83232','#e4c34b','#b83232']},
+{name:'보스니아 헤르체고비나',colors:['#24416f','#e4c34b','#ffffff']},
+{name:'벨라루스',colors:['#b83232','#39845a','#ffffff']},
+{name:'몰도바',colors:['#244b8f','#e4c34b','#b83232']},
+{name:'조지아',colors:['#ffffff','#b83232','#ffffff']},
+{name:'아르메니아',colors:['#b83232','#244b8f','#e18b35']},
+{name:'아제르바이잔',colors:['#244b8f','#b83232','#39845a']},
+{name:'카자흐스탄',colors:['#75aadb','#e4c34b','#75aadb']},
+{name:'우즈베키스탄',colors:['#244b8f','#ffffff','#39845a']},
+{name:'몽골',colors:['#b83232','#24416f','#b83232']},
+{name:'스리랑카',colors:['#e4a832','#39845a','#b83232']},
+{name:'방글라데시',colors:['#39845a','#b83232','#39845a']},
+{name:'미얀마',colors:['#e4c34b','#39845a','#b83232']},
+{name:'캄보디아',colors:['#24416f','#b83232','#24416f']},
+{name:'라오스',colors:['#b83232','#24416f','#b83232']},
+{name:'브루나이',colors:['#e4c34b','#ffffff','#242424']},
+{name:'동티모르',colors:['#b83232','#ffffff','#242424']},
+{name:'파푸아뉴기니',colors:['#242424','#b83232','#e4c34b']},
+{name:'뉴질랜드',colors:['#24416f','#b83232','#24416f']},
+{name:'피지',colors:['#75aadb','#ffffff','#b83232']},
+{name:'쿠바',colors:['#24416f','#ffffff','#b83232']},
+{name:'자메이카',colors:['#39845a','#e4c34b','#242424']},
+{name:'도미니카공화국',colors:['#ffffff','#b83232','#24416f']},
+{name:'코스타리카',colors:['#24416f','#ffffff','#b83232']},
+{name:'파나마',colors:['#ffffff','#244b8f','#b83232']},
+{name:'콜롬비아',colors:['#e4c34b','#244b8f','#b83232']},
+{name:'페루',colors:['#b83232','#ffffff','#b83232']},
+{name:'에콰도르',colors:['#e4c34b','#244b8f','#b83232']},
+{name:'우루과이',colors:['#ffffff','#75aadb','#ffffff']},
+{name:'볼리비아',colors:['#b83232','#e4c34b','#39845a']},
+{name:'파라과이',colors:['#b83232','#ffffff','#244b8f']},
+{name:'베네수엘라',colors:['#e4c34b','#244b8f','#b83232']},
+{name:'코트디부아르',colors:['#e18b35','#ffffff','#39845a']},
+{name:'세네갈',colors:['#39845a','#e4c34b','#b83232']}
 ];
 
 const flagWallPositions=(()=>{
@@ -256,7 +306,7 @@ case'베트남':fill('#b83232');star(160,100,53,'#f5d34f');break;
 case'남아공':fill('#24416f');fill('#b83232',0,0,320,66);fill('#39845a',0,66,320,68);fill('#fff',0,132,320,68);c.fillStyle='#e4c34b';c.beginPath();c.moveTo(0,0);c.lineTo(120,100);c.lineTo(0,200);c.closePath();c.fill();c.fillStyle='#b83232';c.beginPath();c.moveTo(0,20);c.lineTo(105,100);c.lineTo(0,180);c.closePath();c.fill();break;
 default:h(...flag.colors)}
 return new THREE.CanvasTexture(canvas)},[flag]);return <mesh position={[0,0,.078]}><planeGeometry args={[.72,.45]}/><meshBasicMaterial map={texture} side={THREE.DoubleSide}/></mesh>}
-function FlagGallery(){return <>{[-1,1].map(side=><group key={side}>{sanctuaryFlags.map((flag,i)=>{const row=Math.floor(i/25),index=i%25,{x,z}=flagWallPositions[index],wallAngle=Math.atan2(-side*x,-(z+10));return <group key={flag.name} position={[side*(x-.12),row===0?4.05:3.05,z]} rotation={[0,wallAngle,0]}><Block p={[0,0,0]} s={[.78,.51,.07]} c="#6d513a"/><Block p={[0,0,.042]} s={[.74,.47,.025]} c="#e7dfd1"/><FlagArtwork flag={flag}/></group>})}</group>)}</>}
+function FlagGallery(){return <>{[-1,1].map(side=>{const wallFlags=side<0?sanctuaryFlags.slice(0,50):sanctuaryFlags.slice(50,100);return <group key={side}>{wallFlags.map((flag,i)=>{const row=Math.floor(i/25),index=i%25,{x,z}=flagWallPositions[index],wallAngle=Math.atan2(-side*x,-(z+10));return <group key={flag.name} position={[side*(x-.12),row===0?4.05:3.05,z]} rotation={[0,wallAngle,0]}><Block p={[0,0,0]} s={[.78,.51,.07]} c="#6d513a"/><Block p={[0,0,.042]} s={[.74,.47,.025]} c="#e7dfd1"/><FlagArtwork flag={flag}/></group>})}</group>})}</>}
 
 const FixedArchitecture=React.memo(function FixedArchitecture(){return <><ambientLight intensity={1.35}/><directionalLight position={[-12,18,16]} intensity={1.8}/><pointLight position={[0,8,-34]} intensity={30} distance={42} color="#ffe3ad"/><mesh position={[0,.005,-10]} rotation={[-Math.PI/2,0,0]} receiveShadow><shapeGeometry args={[sanctuaryFloorShape,64]}/><meshStandardMaterial color="#a99173" roughness={.9} side={THREE.DoubleSide}/></mesh><mesh position={[0,2.85,-10]} scale={[1,1,.946]}><cylinderGeometry args={[18.38,18.38,5.7,160,1,true]}/><meshStandardMaterial color="#806044" side={THREE.BackSide} roughness={.94}/></mesh><FlagGallery/><group position={[0,5.55,-10]}><mesh rotation={[-Math.PI/2,0,0]}><shapeGeometry args={[sanctuaryFloorShape,64]}/><meshStandardMaterial color="#9b876e" side={THREE.DoubleSide} roughness={.95}/></mesh>{Array.from({length:9},(_,i)=><group key={`ceiling-rib-${i}`} rotation={[0,i*Math.PI/9,0]}><Block p={[0,-.015,0]} s={[.12,.16,34]} c={i%2?"#8a6c4e":"#a48763"}/></group>)}</group><group scale={.65}><Block p={[0,.28,-29.25]} s={[22,.72,7.4]} c="#812b3b"/><Block p={[0,.28,-34.7]} s={[22,.72,3.6]} c="#812b3b"/><mesh position={[0,.641,-29.25]} rotation={[-Math.PI/2,0,0]} receiveShadow><planeGeometry args={[21.8,7.2]}/><meshStandardMaterial color="#812b3b" roughness={.96}/></mesh><Block p={[0,4.15,-37.5]} s={[28,7.8,.22]} c="#987b5e"/>{Array.from({length:13},(_,i)=><Block key={`rear-wood-slat-${i}`} p={[0,.85+i*.55,-37.36]} s={[27.5,.055,.08]} c={i%2?"#72583f":"#b18e68"}/>)}<Block p={[0,3.1,-36.6]} s={[14.2,4.15,.16]} c="#171a1d"/><Block p={[0,3.1,-36.49]} s={[13.75,3.72,.04]} c="#17191c"/><Block p={[0,5.22,-36.44]} s={[13.8,.055,.06]} c="#8c755d"/>{[-1,1].map(side=><group key={`side-screen-${side}`} position={[side*17.3,3.45,-36.58]}><Block p={[0,0,0]} s={[5.7,3.35,.18]} c="#6f5943"/><Block p={[0,0,-.105]} s={[5.35,3.02,.04]} c="#c9c9c2"/><Block p={[0,0,-.135]} s={[5.12,2.78,.025]} c="#d7d8d2"/></group>)}<Block p={[-11.2,3.75,-36.6]} s={[2.4,4.5,.12]} c="#cbb18d"/><Block p={[11.2,3.75,-36.6]} s={[2.4,4.5,.12]} c="#cbb18d"/><Block p={[0,1.08,-28.2]} s={[1.55,1.35,.9]} c="#79533b"/><Block p={[0,.78,-27.7]} s={[2.5,.12,1.2]} c="#a7835e"/><BandSetup/></group><SoundBooth/><SeatField/>{Array.from({length:6},(_,i)=>{const angle=-1.12+i*(2.24/5),x=17.85*Math.sin(angle),z=-10+16.95*Math.cos(angle);return <group key={`rear-door-${i}`} position={[x,0,z]} rotation={[0,angle,0]}><Block p={[-1.82,1.72,0]} s={[.24,3.44,.58]} c="#d8c8b3" opacity={1}/><Block p={[1.82,1.72,0]} s={[.24,3.44,.58]} c="#d8c8b3" opacity={1}/><Block p={[0,3.43,0]} s={[3.88,.24,.58]} c="#d8c8b3" opacity={1}/><Block p={[0,1.68,-.14]} s={[3.48,3.18,.18]} c="#916b4b" opacity={1}/><Block p={[0,1.68,-.25]} s={[3.18,2.9,.05]} c="#684832" opacity={1}/><Block p={[-.78,1.68,-.29]} s={[.06,2.66,.035]} c="#916b4b" opacity={1}/><Block p={[.78,1.68,-.29]} s={[.06,2.66,.035]} c="#916b4b" opacity={1}/><Block p={[1.28,1.55,-.34]} s={[.055,.22,.06]} c="#d5b36f" opacity={1}/><Block p={[0,.055,-.12]} s={[3.65,.11,.78]} c="#b9a58e" opacity={1}/></group>})}</>});
 
