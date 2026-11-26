@@ -6,9 +6,13 @@ on:
   pull_request:
     branches: [main]
 
+permissions:
+  contents: read
+
 jobs:
   build:
     runs-on: ubuntu-latest
+    timeout-minutes: 15
     steps:
       - name: Checkout source
         uses: actions/checkout@v4
@@ -18,5 +22,7 @@ jobs:
           node-version: 20
       - name: Install dependencies
         run: npm install
+      - name: Check server JavaScript syntax
+        run: node --check server/index.js
       - name: Build production bundle
         run: npm run build
